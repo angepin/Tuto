@@ -13,17 +13,7 @@ module.exports = () => ({
   ],
 });
 
-interface villePays {
-  ville: string
-  pays: string
-}
-
-const data2: villePays = {
-  ville: "Niort",
-  pays: "France"
-}
-
-function lieu (localite: villePays) {
+function lieu (localite: info) {
   return localite.ville + " en " + localite.pays
 }
 
@@ -40,16 +30,20 @@ function creeDate (){
 
 interface info {
   nom: string
+  ville: string
+  pays: string
 }
 
 const data: info = {
   nom: "Tom",
+  ville: "Niort",
+  pays: "France"
 }
 
 function bonjour (coordonnees: info):string {
   const partie1 = "Bonjour " +coordonnees.nom
   const partie2 = "nous somme le " +creeDate()
-  const partie3 = "et vous êtes actuellement à " +lieu
+  const partie3 = "et vous êtes actuellement à " +lieu(data)
   return partie1 + " " + partie2 + " " + partie3
 }
 console.log (bonjour (data))

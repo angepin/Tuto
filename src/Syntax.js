@@ -11,10 +11,6 @@ module.exports = function () { return ({
         require("@babel/plugin-proposal-object-rest-spread"),
     ]
 }); };
-var data2 = {
-    ville: "Niort",
-    pays: "France"
-};
 function lieu(localite) {
     return localite.ville + " en " + localite.pays;
 }
@@ -24,12 +20,14 @@ function creeDate() {
     return result;
 }
 var data = {
-    nom: "Tom"
+    nom: "Tom",
+    ville: "Niort",
+    pays: "France"
 };
 function bonjour(coordonnees) {
     var partie1 = "Bonjour " + coordonnees.nom;
     var partie2 = "nous somme le " + creeDate();
-    var partie3 = "et vous êtes actuellement à " + lieu;
+    var partie3 = "et vous êtes actuellement à " + lieu(data);
     return partie1 + " " + partie2 + " " + partie3;
 }
 console.log(bonjour(data));
