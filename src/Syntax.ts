@@ -19,7 +19,7 @@ interface villePays {
 }
 
 const data2: villePays = {
-  ville: "Niort",
+  ville: "Paris",
   pays: "France"
 }
 
