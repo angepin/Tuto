@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": [ "es5", "dom" ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noEmitOnError": true,
+        "noImplicitAny": false,
+        "outDir": "../wwwroot/app/",
+        "removeComments": false,
+        "sourceMap": true,
+        "target": "es6",
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true
+    },
+
+"include": [
+    "src/Syntax.ts"
+],
+"exclude": [
+    "node_modules",
+    "node_modules/*",
+    "**/*.spec.ts",
+    "../wwwroot/app",
+],
+"compileOnSave": true,
+"buildOnSave": true,
+
+}
