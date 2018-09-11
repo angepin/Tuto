@@ -27,8 +27,8 @@ function lieu(_a) {
     return ville + " en " + pays;
 }
 function whois(_a) {
-    var DisplayFirstName = _a.DisplayFirstName, DisplayLastName = _a.DisplayLastName;
-    return DisplayFirstName + " " + DisplayLastName;
+    var displayFirstName = _a.displayFirstName, displayLastName = _a.displayLastName;
+    return displayFirstName + " " + displayLastName;
 }
 function creeDate() {
     var frLocale = require('date-fns/locale/fr');
@@ -36,22 +36,23 @@ function creeDate() {
     return result;
 }
 var data = {
-    DisplayFirstName: "Angelo",
-    DisplayLastName: "Pinto",
+    displayFirstName: "Mr",
+    displayLastName: "Pinto",
     ville: "Niort",
     pays: "France"
 };
 var patch = {
-    DisplayFirstName: "Pablo",
-    DisplayLastName: "Escobar",
+    displayFirstName: "Mr",
+    displayLastName: "Escobar",
     ville: "Rionegro",
     pays: "Colombie"
 };
 var dataPatched = __assign({}, data, patch);
 function bonjour(coordonnees) {
-    var partie1 = "Bonjour " + whois(coordonnees);
-    var partie2 = "nous somme le " + creeDate();
-    var partie3 = "et vous êtes actuellement à " + lieu(coordonnees);
-    return partie1 + " " + partie2 + " " + partie3;
+    var partie1 = "Bonjour " + whois(coordonnees) + ", je vous souhaite le bienvenue";
+    var partie2 = "à " + lieu(coordonnees);
+    var partie3 = "et vous êtes acctuellement le " + creeDate() + ",";
+    var partie4 = "Bonne journée à vous ! ";
+    return partie1 + " " + partie2 + " " + partie3 + " " + partie4;
 }
 console.log(bonjour(dataPatched));

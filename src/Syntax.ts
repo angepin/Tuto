@@ -13,13 +13,11 @@ module.exports = () => ({
   ],
 })
 
-
 function lieu ({ville,pays}: geoinfo) {
   return ville + " en " + pays
 }
-
-function whois ({DisplayFirstName,DisplayLastName}: info) {
-  return DisplayFirstName + " " + DisplayLastName
+function whois ({displayFirstName,displayLastName}: info) {
+  return displayFirstName + " " + displayLastName
 }
 
 function creeDate (){
@@ -34,8 +32,8 @@ function creeDate (){
 }
 
 interface info extends geoinfo {
-  DisplayFirstName: string
-  DisplayLastName: string
+  displayFirstName: string
+  displayLastName: string
 }
 
 interface geoinfo {
@@ -44,29 +42,29 @@ interface geoinfo {
 }
 
 const data: info = {
-  DisplayFirstName: "Angelo",
-  DisplayLastName: "Pinto",
+  displayFirstName: "Mr",
+  displayLastName: "Pinto",
   ville: "Niort",
-  pays: "France"
+  pays: "France",
 }
 
 const patch: info = {
-  DisplayFirstName: "Pablo",
-  DisplayLastName: "Escobar",
+  displayFirstName: "Mr",
+  displayLastName: "Escobar",
   ville: "Rionegro",
   pays: "Colombie"
 }
 
-
-const dataPatched:info = {
+const dataPatched: info = {
   ...data,...patch
 }
 
-
-function bonjour (coordonnees: info):string {
-  const partie1 = "Bonjour " +whois(coordonnees)
-  const partie2 = "nous somme le " +creeDate()
-  const partie3 = "et vous êtes actuellement à " +lieu(coordonnees)
-  return partie1 + " " + partie2 + " " + partie3
+function bonjour (coordonnees : info):string {
+  const partie1 = "Bonjour " +whois(coordonnees) + ", je vous souhaite le bienvenue"
+  const partie2 = "à " +lieu(coordonnees)
+  const partie3 = "et vous êtes acctuellement le " +creeDate() + ","
+  const partie4 = "Bonne journée à vous !"
+return partie1 + " " + partie2 + " " + partie3 + " " + partie4 
 }
-console.log (bonjour (dataPatched))
+
+console.log (bonjour(dataPatched))
