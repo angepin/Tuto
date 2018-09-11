@@ -1,5 +1,5 @@
 {
-  "name": "Tuto",
+  "name": "Tuto1",
   "version": "1.0.0",
   "main": "Syntax.js",
   "directories": {
@@ -151,7 +151,7 @@
   },
   "scripts": {
     "watch": "nodemon -e ts -w ./src -x npm run watch:serve",
-    "watch:serve": "ts-node --inspect src/index.ts",
+    "watch:serve": "ts-node --inspect src/Syntax.ts",
     "babel-node": "babel-node --presets=latest",
     "start": "nodemon --exec npm run babel-node -- src/Syntax.js",
     "build": "babel src -d dist",
