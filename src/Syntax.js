@@ -11,8 +11,13 @@ module.exports = function () { return ({
         require("@babel/plugin-proposal-object-rest-spread"),
     ]
 }); };
-function lieu(localite) {
-    return localite.ville + " en " + localite.pays;
+function lieu(_a) {
+    var ville = _a.ville, pays = _a.pays;
+    return ville + " en " + pays;
+}
+function whois(_a) {
+    var DisplayFirstName = _a.DisplayFirstName, DisplayLastName = _a.DisplayLastName;
+    return DisplayFirstName + " " + DisplayLastName;
 }
 function creeDate() {
     var frLocale = require('date-fns/locale/fr');
@@ -20,14 +25,15 @@ function creeDate() {
     return result;
 }
 var data = {
-    nom: "Tom",
+    DisplayFirstName: "El",
+    DisplayLastName: "Chapo",
     ville: "Niort",
     pays: "France"
 };
 function bonjour(coordonnees) {
-    var partie1 = "Bonjour " + coordonnees.nom;
+    var partie1 = "Bonjour " + whois(coordonnees);
     var partie2 = "nous somme le " + creeDate();
-    var partie3 = "et vous êtes actuellement à " + lieu(data);
+    var partie3 = "et vous êtes actuellement à " + lieu(coordonnees);
     return partie1 + " " + partie2 + " " + partie3;
 }
 console.log(bonjour(data));

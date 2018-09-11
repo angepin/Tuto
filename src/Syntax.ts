@@ -11,10 +11,15 @@ module.exports = () => ({
     [require("@babel/plugin-proposal-class-properties"), { loose: true }],
     require("@babel/plugin-proposal-object-rest-spread"),
   ],
-});
+})
 
-function lieu (localite: info) {
-  return localite.ville + " en " + localite.pays
+
+function lieu ({ville,pays}: geoinfo) {
+  return ville + " en " + pays
+}
+
+function whois ({DisplayFirstName,DisplayLastName}: info) {
+  return DisplayFirstName + " " + DisplayLastName
 }
 
 function creeDate (){
@@ -28,22 +33,29 @@ function creeDate (){
   return result
 }
 
-interface info {
-  nom: string
+interface info extends geoinfo {
+  DisplayFirstName: string
+  DisplayLastName: string
+}
+
+interface geoinfo {
   ville: string
   pays: string
 }
 
+
 const data: info = {
-  nom: "Tom",
+  DisplayFirstName: "El",
+  DisplayLastName: "Chapo",
   ville: "Niort",
   pays: "France"
 }
 
+
 function bonjour (coordonnees: info):string {
-  const partie1 = "Bonjour " +coordonnees.nom
+  const partie1 = "Bonjour " +whois(coordonnees)
   const partie2 = "nous somme le " +creeDate()
-  const partie3 = "et vous êtes actuellement à " +lieu(data)
+  const partie3 = "et vous êtes actuellement à " +lieu(coordonnees)
   return partie1 + " " + partie2 + " " + partie3
 }
 console.log (bonjour (data))
