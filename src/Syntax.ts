@@ -45,7 +45,7 @@ interface geoinfo {
 
 
 const data: info = {
-  DisplayFirstName: "Elo",
+  DisplayFirstName: "El",
   DisplayLastName: "Chapo",
   ville: "Niort",
   pays: "France"
