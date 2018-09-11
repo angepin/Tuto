@@ -36,14 +36,16 @@ function creeDate() {
     return result;
 }
 var data = {
-    DisplayFirstName: "Elxxffff",
-    DisplayLastName: "Chapo",
+    DisplayFirstName: "Angelo",
+    DisplayLastName: "Pinto",
     ville: "Niort",
     pays: "France"
 };
 var patch = {
-    ville: "Porto",
-    pays: "Portugal"
+    DisplayFirstName: "Pablo",
+    DisplayLastName: "Escobar",
+    ville: "Rionegro",
+    pays: "Colombie"
 };
 var dataPatched = __assign({}, data, patch);
 function bonjour(coordonnees) {

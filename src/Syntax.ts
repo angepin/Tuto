@@ -43,18 +43,20 @@ interface geoinfo {
   pays: string
 }
 
-
 const data: info = {
-  DisplayFirstName: "Elxxffff",
-  DisplayLastName: "Chapo",
+  DisplayFirstName: "Angelo",
+  DisplayLastName: "Pinto",
   ville: "Niort",
   pays: "France"
 }
 
-const patch: geoinfo ={
-  ville: "Porto",
-  pays: "Portugal"
+const patch: info = {
+  DisplayFirstName: "Pablo",
+  DisplayLastName: "Escobar",
+  ville: "Rionegro",
+  pays: "Colombie"
 }
+
 
 const dataPatched:info = {
   ...data,...patch
