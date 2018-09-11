@@ -51,6 +51,15 @@ const data: info = {
   pays: "France"
 }
 
+const patch: geoinfo ={
+  ville: "Porto",
+  pays: "Portugal"
+}
+
+const dataPatched:info = {
+  ...data,...patch
+}
+
 
 function bonjour (coordonnees: info):string {
   const partie1 = "Bonjour " +whois(coordonnees)
@@ -58,4 +67,4 @@ function bonjour (coordonnees: info):string {
   const partie3 = "et vous êtes actuellement à " +lieu(coordonnees)
   return partie1 + " " + partie2 + " " + partie3
 }
-console.log (bonjour (data))
+console.log (bonjour (dataPatched))
