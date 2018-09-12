@@ -44,14 +44,14 @@ interface info {
 }
 
 interface geoinfo {
-  ville: string
-  pays: string
-  street: string
+    ville: string
+    pays: string
+    street: string
 }
 
 const data: info = {
   id:{
-    displayFirstName: "Mr",
+    displayFirstName: "Angelo",
     displayLastName: "Pinto",
     birthdate: new Date(2001,9,1),
   },
@@ -64,7 +64,7 @@ const data: info = {
 
 const patch: info = {
   id:{
-    displayFirstName: "Mr",
+    displayFirstName: "Pablo",
     displayLastName: "Escobar",
     birthdate: new Date(1949,11,1),
   },
