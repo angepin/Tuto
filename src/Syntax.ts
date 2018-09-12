@@ -13,22 +13,18 @@ module.exports = () => ({
   ],
 })
 
-function lieu ({ville,pays}: geoinfo) {
-  return ville + " en " + pays
+function lieu ({ville,pays}: geoinfo, rue: string) {
+  return ville + " en " + pays + ( rue &&  rue.concat(" appartement b"))
 }
+
 function whois ({displayFirstName,displayLastName}: infoid) {
   return displayFirstName + " " + displayLastName
 }
 
 function dateEnString (uneDate?: Date){
   var frLocale = require('date-fns/locale/fr')
-  var maDate = uneDate === undefined ? new Date() : uneDate 
-  var result = format(
-    maDate,
-    'D MMMM YYYY',
-    {locale: frLocale}
-  )
-
+  var maDate = uneDate ? uneDate : new Date() 
+  var result = format(maDate,'D MMMM YYYY',{locale: frLocale})
   return result
 }
 
@@ -58,20 +54,20 @@ const data: info = {
   location: {
     ville: "Niort",
     pays: "France",
-    street: "13 Avenue de Paris",
+    street: " 13 Avenue de Paris",
   }
 }
 
 const patch: info = {
   id:{
-    displayFirstName: "Pablo",
-    displayLastName: "Escobar",
-    birthdate: new Date(1949,11,1),
+    displayFirstName: "Magellan",
+    displayLastName: "Fernand",
+    birthdate: new Date(1480,1,3),
   },
   location: { 
     ville: "Rionegro",
     pays: "Colombie",
-    street: "13 marshall street",
+    street: " 68 marshall street",
   }
 }
 
@@ -79,11 +75,11 @@ const dataPatched: info = {
   ...data,...patch
 }
 
-function bonjour (coordonnees : info):string {
-  const partie1 = "Bonjour " +whois(coordonnees.id) + ", je vous souhaite la bienvenue"
-  const partie2 = "à " +lieu(coordonnees.location)
-  const partie3 = "et vous êtes actuellement le " + dateEnString(new Date(1988,9,27)) + ","
-  const partie4 = "votre anniversaire est le " + dateEnString(coordonnees.id.birthdate)
+function bonjour ({id,location, location:{street}} : info):string {
+  const partie1 = "Bonjour " +whois(id) + ", je vous souhaite la bienvenue"
+  const partie2 = "à " +lieu(location, street)
+  const partie3 = "et vous êtes actuellement le " + dateEnString(new Date()) + ","
+  const partie4 = "votre anniversaire est le " + dateEnString(id.birthdate)
 return partie1 + " " + partie2 + " " + partie3 + " " + partie4 
 }
 

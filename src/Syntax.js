@@ -22,9 +22,9 @@ module.exports = function () { return ({
         require("@babel/plugin-proposal-object-rest-spread"),
     ]
 }); };
-function lieu(_a) {
+function lieu(_a, rue) {
     var ville = _a.ville, pays = _a.pays;
-    return ville + " en " + pays;
+    return ville + " en " + pays + (rue && rue.concat(" appartement b"));
 }
 function whois(_a) {
     var displayFirstName = _a.displayFirstName, displayLastName = _a.displayLastName;
@@ -32,7 +32,7 @@ function whois(_a) {
 }
 function dateEnString(uneDate) {
     var frLocale = require('date-fns/locale/fr');
-    var maDate = uneDate === undefined ? new Date() : uneDate;
+    var maDate = uneDate ? uneDate : new Date();
     var result = date_fns_1.format(maDate, 'D MMMM YYYY', { locale: frLocale });
     return result;
 }
@@ -50,22 +50,23 @@ var data = {
 };
 var patch = {
     id: {
-        displayFirstName: "Pablo",
-        displayLastName: "Escobar",
-        birthdate: new Date(1949, 11, 1)
+        displayFirstName: "Magellan",
+        displayLastName: "Fernand",
+        birthdate: new Date(1480, 1, 3)
     },
     location: {
         ville: "Rionegro",
         pays: "Colombie",
-        street: "13 marshall street"
+        street: " 13 marshall street"
     }
 };
 var dataPatched = __assign({}, data, patch);
-function bonjour(coordonnees) {
-    var partie1 = "Bonjour " + whois(coordonnees.id) + ", je vous souhaite la bienvenue";
-    var partie2 = "à " + lieu(coordonnees.location);
-    var partie3 = "et vous êtes actuellement le " + dateEnString(new Date(1988, 9, 27)) + ",";
-    var partie4 = "votre anniversaire est le " + dateEnString(coordonnees.id.birthdate);
+function bonjour(_a) {
+    var id = _a.id, location = _a.location, street = _a.location.street;
+    var partie1 = "Bonjour " + whois(id) + ", je vous souhaite la bienvenue";
+    var partie2 = "à " + lieu(location, street);
+    var partie3 = "et vous êtes actuellement le " + dateEnString(new Date()) + ",";
+    var partie4 = "votre anniversaire est le " + dateEnString(id.birthdate);
     return partie1 + " " + partie2 + " " + partie3 + " " + partie4;
 }
 console.log(bonjour(dataPatched));
