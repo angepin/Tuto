@@ -30,29 +30,42 @@ function whois(_a) {
     var displayFirstName = _a.displayFirstName, displayLastName = _a.displayLastName;
     return displayFirstName + " " + displayLastName;
 }
-function creeDate() {
+function dateEnString(uneDate) {
     var frLocale = require('date-fns/locale/fr');
-    var result = date_fns_1.format(new Date(), 'D MMMM YYYY', { locale: frLocale });
+    var maDate = uneDate === undefined ? new Date() : uneDate;
+    var result = date_fns_1.format(maDate, 'D MMMM YYYY', { locale: frLocale });
     return result;
 }
 var data = {
-    displayFirstName: "Mr",
-    displayLastName: "Pinto",
-    ville: "Niort",
-    pays: "France"
+    id: {
+        displayFirstName: "Mr",
+        displayLastName: "Pinto",
+        birthdate: new Date(2001, 9, 1)
+    },
+    location: {
+        ville: "Niort",
+        pays: "France",
+        street: "13 Avenue de Paris"
+    }
 };
 var patch = {
-    displayFirstName: "Mr",
-    displayLastName: "Escobar",
-    ville: "Rionegro",
-    pays: "Colombie"
+    id: {
+        displayFirstName: "Mr",
+        displayLastName: "Escobar",
+        birthdate: new Date(1949, 11, 1)
+    },
+    location: {
+        ville: "Rionegro",
+        pays: "Colombie",
+        street: "13 marshall street"
+    }
 };
 var dataPatched = __assign({}, data, patch);
 function bonjour(coordonnees) {
-    var partie1 = "Bonjour " + whois(coordonnees) + ", je vous souhaite le bienvenue";
-    var partie2 = "à " + lieu(coordonnees);
-    var partie3 = "et vous êtes acctuellement le " + creeDate() + ",";
-    var partie4 = "Bonne journée à vous ! ";
+    var partie1 = "Bonjour " + whois(coordonnees.id) + ", je vous souhaite la bienvenue";
+    var partie2 = "à " + lieu(coordonnees.location);
+    var partie3 = "et vous êtes actuellement le " + dateEnString(new Date(1988, 9, 27)) + ",";
+    var partie4 = "votre anniversaire est le " + dateEnString(coordonnees.id.birthdate);
     return partie1 + " " + partie2 + " " + partie3 + " " + partie4;
 }
 console.log(bonjour(dataPatched));
