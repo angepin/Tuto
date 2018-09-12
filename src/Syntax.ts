@@ -1,5 +1,4 @@
 import {format} from 'date-fns'
-const watch = require('tsc-watch/client');
 
 
 
@@ -13,19 +12,15 @@ module.exports = () => ({
   ],
 })
 
-function lieu ({ville,pays}: geoinfo, rue: string) {
-  return ville + " en " + pays + ( rue &&  rue.concat(" appartement b"))
-}
+const lieu = ({ville,pays}: geoinfo) => ville + " en " + pays;
 
-function whois ({displayFirstName,displayLastName}: infoid) {
-  return displayFirstName + " " + displayLastName
-}
+const whois = ({displayFirstName,displayLastName}: infoid) => displayFirstName + " " + displayLastName;
 
-function dateEnString (uneDate?: Date){
-  var frLocale = require('date-fns/locale/fr')
-  var maDate = uneDate ? uneDate : new Date() 
-  var result = format(maDate,'D MMMM YYYY',{locale: frLocale})
-  return result
+
+const dateEnString = (uneDate?: Date) =>  {
+  let frLocale = require('date-fns/locale/fr')
+  let maDate = uneDate ? uneDate : new Date() 
+  return format(maDate,'D MMMM YYYY',{locale: frLocale})
 }
 
 interface infoid {
@@ -65,9 +60,9 @@ const patch: info = {
     birthdate: new Date(1480,1,3),
   },
   location: { 
-    ville: "Rionegro",
-    pays: "Colombie",
-    street: " 68 marshall street",
+    ville: "Porto",
+    pays: "Portugal",
+    street: " 15 Lordelo do Ouro",
   }
 }
 
@@ -75,12 +70,12 @@ const dataPatched: info = {
   ...data,...patch
 }
 
-function bonjour ({id,location, location:{street}} : info):string {
+const bonjour = ( {id, location}:info) => {
   const partie1 = "Bonjour " +whois(id) + ", je vous souhaite la bienvenue"
-  const partie2 = "à " +lieu(location, street)
+  const partie2 = "à " +lieu(location)
   const partie3 = "et vous êtes actuellement le " + dateEnString(new Date()) + ","
-  const partie4 = "votre anniversaire est le " + dateEnString(id.birthdate)
-return partie1 + " " + partie2 + " " + partie3 + " " + partie4 
+  const partie4 = "votre anniversaire est le " + dateEnString(id.birthdate) + " et vous êtes mort"
+  return partie1 + " " + partie2 + " " + partie3 + " " + partie4
 }
 
 console.log (bonjour(dataPatched))

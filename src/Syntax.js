@@ -12,7 +12,6 @@ var __assign = (this && this.__assign) || function () {
 };
 exports.__esModule = true;
 var date_fns_1 = require("date-fns");
-var watch = require('tsc-watch/client');
 module.exports = function () { return ({
     presets: [
         require("@babel/preset-stage-2"),
@@ -22,20 +21,19 @@ module.exports = function () { return ({
         require("@babel/plugin-proposal-object-rest-spread"),
     ]
 }); };
-function lieu(_a, rue) {
+var lieu = function (_a) {
     var ville = _a.ville, pays = _a.pays;
-    return ville + " en " + pays + (rue && rue.concat(" appartement b"));
-}
-function whois(_a) {
+    return ville + " en " + pays;
+};
+var whois = function (_a) {
     var displayFirstName = _a.displayFirstName, displayLastName = _a.displayLastName;
     return displayFirstName + " " + displayLastName;
-}
-function dateEnString(uneDate) {
+};
+var dateEnString = function (uneDate) {
     var frLocale = require('date-fns/locale/fr');
     var maDate = uneDate ? uneDate : new Date();
-    var result = date_fns_1.format(maDate, 'D MMMM YYYY', { locale: frLocale });
-    return result;
-}
+    return date_fns_1.format(maDate, 'D MMMM YYYY', { locale: frLocale });
+};
 var data = {
     id: {
         displayFirstName: "Angelo",
@@ -45,7 +43,7 @@ var data = {
     location: {
         ville: "Niort",
         pays: "France",
-        street: "13 Avenue de Paris"
+        street: " 13 Avenue de Paris"
     }
 };
 var patch = {
@@ -55,18 +53,18 @@ var patch = {
         birthdate: new Date(1480, 1, 3)
     },
     location: {
-        ville: "Rionegro",
-        pays: "Colombie",
-        street: " 13 marshall street"
+        ville: "Porto",
+        pays: "Portugal",
+        street: " 15 Lordelo do Ouro"
     }
 };
 var dataPatched = __assign({}, data, patch);
-function bonjour(_a) {
-    var id = _a.id, location = _a.location, street = _a.location.street;
+var bonjour = function (_a) {
+    var id = _a.id, location = _a.location;
     var partie1 = "Bonjour " + whois(id) + ", je vous souhaite la bienvenue";
-    var partie2 = "à " + lieu(location, street);
+    var partie2 = "à " + lieu(location);
     var partie3 = "et vous êtes actuellement le " + dateEnString(new Date()) + ",";
-    var partie4 = "votre anniversaire est le " + dateEnString(id.birthdate);
+    var partie4 = "votre anniversaire est le " + dateEnString(id.birthdate) + " et vous êtes mort";
     return partie1 + " " + partie2 + " " + partie3 + " " + partie4;
-}
+};
 console.log(bonjour(dataPatched));
